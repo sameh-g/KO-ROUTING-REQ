@@ -10,9 +10,7 @@ var require = {
         "knockout-projections": "app/knockout-projections.min",
         "signals":              "app/signals.min",
         "text":                 "app/text",
-        "postbox":              "app/knockout-postbox"
-
-        
+        "postbox":              "app/knockout-postbox"   
     },
     shim: {
         "bootstrap": { deps: ["jquery"] }

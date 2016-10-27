@@ -1,0 +1,1 @@
+define(["knockout","text!./conformity.html"],function(a,o){function e(o){var e=this;alert(e.web1Conformity),e.web1Conformity=a.observable("aaaaaaaaaaaaaaaaaa5%")}return e.prototype.doSomething=function(){this.message("You invoked doSomething() on the viewmodel.")},{viewModel:e,template:o}});

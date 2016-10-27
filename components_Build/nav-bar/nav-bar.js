@@ -1,0 +1,1 @@
+define(["knockout","text!./nav-bar.html"],function(t,e){function n(t){this.route=t.route}return{viewModel:n,template:e}});

@@ -1,0 +1,1 @@
+define(["knockout","text!./test.html"],function(t,e){function n(e){var n=this;n.test=t.observable("")}return{viewModel:n,template:e}});

@@ -1,0 +1,27 @@
+{
+  "name": "webclient",
+  "version": "1.0.0",
+  "description": "s",
+  "main": "app.build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samehmagdytawfik/KO-ROUTING-REQ.git"
+  },
+  "author": "sameh george",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samehmagdytawfik/KO-ROUTING-REQ/issues"
+  },
+  "homepage": "https://github.com/samehmagdytawfik/KO-ROUTING-REQ#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^2.0.0",
+    "pump": "^1.0.1"
+  }
+}
