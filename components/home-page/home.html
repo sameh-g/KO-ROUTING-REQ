@@ -1,4 +1,6 @@
 
+<div id='container'>
+
 <h2>Home</h2>
 
 <!--Name: <input type="text" data-bind="value: message"></input>
@@ -7,7 +9,8 @@
 <p data-bind='text: message'></p>
 
 <button data-bind='click: doSomething'>Click me</button>
-      
+<div id='loading' data-bind="visible: isLoading">Loading...</div>
+</div>
 <!--<conformity-cr data-bind="web1Conformity: message"> </conformity-cr>
 
 <test-cr data-bind="test: message"> </test-cr>-->

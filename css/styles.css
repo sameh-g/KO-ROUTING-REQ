@@ -1,3 +1,18 @@
+#container {
+    position: relative;
+    font-family: sans-serif;
+}
+#loading {
+    position: absolute;
+    padding: 6px 12px;
+    border: solid 1px #222;
+    background-color: #444;
+    color: #ddd;
+    top: 200px;
+    left: 600px;
+    border-radius: 2px;
+}
+
 #page {
 	margin-top: 80px;
 }
