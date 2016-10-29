@@ -11,7 +11,7 @@ This Project is a fullstack applicaiton using Knockout
 ## Database
    MongoDB OR MSQL 
 ## Authentication 
-   Active Directory
+  * Active Directory
 
  ##  Config 
   * NA 
