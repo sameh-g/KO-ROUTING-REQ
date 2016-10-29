@@ -31,7 +31,7 @@ var pump = require('pump');
   pump([
         gulp.src('components/**/*.js'),
         uglify(),
-        gulp.dest('componenets_')
+        gulp.dest('components_Build')
     ],
     cb
   );

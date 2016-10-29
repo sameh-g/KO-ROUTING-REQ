@@ -1,1 +1,1 @@
-define(["knockout","text!./home.html"],function(e,o){function t(o){this.message=e.observable("10%")}return t.prototype.doSomething=function(){this.message("You invoked doSomething() on the viewmodel.")},{viewModel:t,template:o}});
+define(["knockout","text!./home.html"],function(e,o){function t(o){this.isLoading=e.observable(!0),this.message=e.observable("10%")}return t.prototype.doSomething=function(){this.isLoading(!1),this.message("You invoked doSomething() on the viewmodel.")},{viewModel:t,template:o}});

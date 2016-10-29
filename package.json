@@ -20,8 +20,10 @@
     "gulp": "^3.9.1"
   },
   "dependencies": {
+    "express": "^4.14.0",
     "gulp-concat": "^2.6.0",
     "gulp-uglify": "^2.0.0",
+    "path": "^0.12.7",
     "pump": "^1.0.1"
   }
 }
