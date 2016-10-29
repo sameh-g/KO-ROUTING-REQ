@@ -14,6 +14,8 @@ app.use("/nav-bar", express.static(__dirname + '/nav-bar'));
 app.use("/Navigation-page", express.static(__dirname + '/Navigation-page'));
 app.use("/Test-cr", express.static(__dirname + '/Test-cr'));
 
+
+
 app.get('/index', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 }); 
