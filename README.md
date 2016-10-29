@@ -13,7 +13,7 @@ This Project is a fullstack applicaiton using Knockout
 ## Authentication 
   * Active Directory
 
- ##  Config 
+## Config 
   * NA 
   * NA 
   * NA 
@@ -26,5 +26,6 @@ This Project is a fullstack applicaiton using Knockout
   * MSQL to call SQL queries.. 
   * Use MiddleWare in NodeJS..
   * Authentication Using (Active Directory then pass to JSON web TOKEN)..
+
 
   
