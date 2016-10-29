@@ -1,4 +1,4 @@
-# TEST TEST TEST STARTER  
+# STARTER  
 
 This Project is a fullstack applicaiton using Knockout 
 ## FrontEnd
