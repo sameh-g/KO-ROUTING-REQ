@@ -5,7 +5,7 @@ define(["knockout", "text!./conformity.html"], function(ko, confirmityTemplate) 
 
     var self =this;
 alert(self.web1Conformity)
-    self.web1Conformity=ko.observable('aaaaaaaaaaaaaaaaaa5%');
+    self.web1Conformity(params.value);
     // self.web2Conformity=ko.observable('40%');
     // self.web3Conformity=ko.observable('35%');
     // self.web4Conformity=ko.observable('5%');
