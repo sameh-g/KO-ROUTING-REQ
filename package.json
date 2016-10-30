@@ -20,10 +20,15 @@
     "gulp": "^3.9.1"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "gulp-concat": "^2.6.0",
     "gulp-uglify": "^2.0.0",
+    "jsonwebtoken": "^7.1.9",
+    "morgan": "^1.7.0",
     "mssql": "^3.3.0",
+    "passport": "^0.3.2",
+    "passport-windowsauth": "^1.0.0",
     "path": "^0.12.7",
     "pump": "^1.0.1"
   }
