@@ -1,6 +1,15 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var sql = require('mssql');
+
+    var dbConfig = {
+        server : "SGEORGE-8-8777",
+        database : "TRADBPOC",
+        user : "sg",
+        password : "Xyz@123sameh"
+    };
+
 
 //Server data 
 app.use("/app", express.static(__dirname + '/app'));
@@ -23,8 +32,32 @@ app.get('/index', function(req, res) {
 
 
 app.get('/getValue', function(req, res) {
-  res.send('Hello World!');
+GetReportedCRMCases(res)
 });
+
+
+function GetReportedCRMCases(res) {
+    var Conn = new sql.Connection(dbConfig);
+    var req = new sql.Request(Conn);
+    
+    Conn.connect(function(err) {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            req.query("select * from ReportedCRMCases", function(err, recordset) {
+                if (err) {
+                    console.log(err);
+                } else {
+               console.log(recordset);
+               res.send(recordset);
+                }
+                Conn.close();
+            })
+        }
+    })
+}
+
 
 
 app.listen(3000, function () {
