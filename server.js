@@ -30,9 +30,6 @@ var ad = new ActiveDirectory(config);
 var username = 'sameh.george@ctstest.local';
 var password = 'Xyz78901' 
 
-
-
-
     var dbConfig = {
         server : "SGEORGE-8-8777",
         database : "TRADBPOC",
@@ -70,17 +67,19 @@ app.get('/login', function(req, res) {
 app.get('/authenticate', function(req, res) {
     ad.authenticate(username, password, function(err, auth) {
   if (err) {
-   res.sendFile(path.join(__dirname + '/login.html'));
+           res.send('false')
+//    res.sendFile(path.join(__dirname + '/login.html'));
     console.log('ERROR: '+JSON.stringify(err));
     return;
   }
 
   if (auth) {
-          res.sendFile(path.join(__dirname + '/index.html'));
+        //   res.sendFile(path.join(__dirname + '/index.html'));
+          res.send('true')
     console.log('Authenticated!');
   }
   else {
-         res.sendFile(path.join(__dirname + '/login.html'));
+    res.send('false')
     console.log('Authentication failed!');
   }
 });
@@ -91,10 +90,6 @@ app.get('/authenticate', function(req, res) {
 
 
 app.get('/getValue', function(req, res) {
-
-
-
-
 GetReportedCRMCases(res)
 });
 

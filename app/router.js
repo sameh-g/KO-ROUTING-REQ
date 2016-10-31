@@ -23,7 +23,14 @@ define(["knockout", "crossroads", "hasher",'jquery'], function(ko, crossroads, h
 
 
     function isUserAuthenticated() {
-        return false;
+          //ajax call to authentication 
+   $.ajax({url: "/authenticate", success: function(result){
+       console.log('AD authenticate',result)
+       return result;
+    }});
+
+    //Ajax Call to authenticate 
+        //return false;
     }
     
     function Router(config) {
@@ -34,7 +41,8 @@ define(["knockout", "crossroads", "hasher",'jquery'], function(ko, crossroads, h
             crossroads.addRoute(route.url, function(requestParams) {
                 currentRoute(ko.utils.extend(requestParams, route.params));
                  //authenticate code should be here
-                 if(!isUserAuthenticated())
+                 console.log('isUserAuthenticated',isUserAuthenticated())
+                 if(isUserAuthenticated())
                  {
                  window.location.href = "login";
                  }  
