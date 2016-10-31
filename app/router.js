@@ -1,4 +1,4 @@
-define(["knockout", "crossroads", "hasher"], function(ko, crossroads, hasher) {
+define(["knockout", "crossroads", "hasher",'jquery'], function(ko, crossroads, hasher,$) {
 
     // This module configures crossroads.js, a routing library. If you prefer, you
     // can use any other routing library (or none at all) as Knockout is designed to
@@ -18,7 +18,14 @@ define(["knockout", "crossroads", "hasher"], function(ko, crossroads, hasher) {
 
                 ]
     });
+    
 
+
+
+    function isUserAuthenticated() {
+        return false;
+    }
+    
     function Router(config) {
         
         var currentRoute = this.currentRoute = ko.observable({});
@@ -26,11 +33,27 @@ define(["knockout", "crossroads", "hasher"], function(ko, crossroads, hasher) {
         ko.utils.arrayForEach(config.routes, function(route) {
             crossroads.addRoute(route.url, function(requestParams) {
                 currentRoute(ko.utils.extend(requestParams, route.params));
-            });
+                 //authenticate code should be here
+                 if(!isUserAuthenticated())
+                 {
+                 window.location.href = "login";
+                 }  
+                 });
+
+            
         });
+crossroads.routed.add(console.log, console); //log all routes
+crossroads.addRoute('/login', isUserAuthenticated());
+crossroads.addRoute('/contact/{id}', function(id){
+  console.log(id);
+});
+
 
         activateCrossroads();
     }
+
+
+
 
     function activateCrossroads() {
         function parseHash(newHash, oldHash) { crossroads.parse(newHash); }

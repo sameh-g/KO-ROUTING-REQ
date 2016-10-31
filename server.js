@@ -9,6 +9,7 @@ var config = require('./config'); // get our config file
 // var User   = require('./app/models/user'); // get our mongoose model
 var passport = require('passport');
 var WindowsStrategy = require('passport-windowsauth');
+var ActiveDirectory = require('activedirectory');
 
 app.set('superSecret', config.secret); // secret variable
 // use body parser so we can get info from POST and/or URL parameters
@@ -21,42 +22,15 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.post('/login',
-//   passport.authenticate('WindowsAuthentication', {
-//     successRedirect: '/loginSuccess',
-//     failureRedirect: '/loginFailure'
-//   })
-// );
+var config = { url: 'ldap://10.0.0.172',
+               baseDN: 'dc=ctstest,dc=local'
+            }
 
-// app.get('/loginFailure', function(req, res, next) {
-//   res.send('Failed to authenticate');
-// });
-
-// app.get('/loginSuccess', function(req, res, next) {
-//   res.send('Successfully authenticated');
-// });
+var ad = new ActiveDirectory(config);
+var username = 'sameh.george@ctstest.local';
+var password = 'Xyz78901' 
 
 
-// passport.serializeUser(function(user, done) {
-//     done(null, user);
-// });
-
-// passport.deserializeUser(function(user, done) {
-//     done(null, user);
-// });
-
-// passport.use(new WindowsStrategy({
-//     integrated: true 
-// }, function(profile,done) {
-//     var user = {
-//         id: profile.id,
-//     };
-//     done(null, user);
-// }));
-
-// app.all("*", passport.authenticate("WindowsAuthentication"), function (request,response,next){
-//     next();
-// });
 
 
     var dbConfig = {
@@ -84,9 +58,7 @@ var userName = process.env['USERPROFILE'].split(path.sep)[2];
 var loginId = path.join("domainName",userName);
 console.log('loginid**********',loginId);
 
-app.get('/authenticate', function(req, res) {
-          res.send("authenticate with "+loginId);
-}); 
+
 app.get('/index', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 }); 
@@ -95,32 +67,55 @@ app.get('/login', function(req, res) {
     res.sendFile(path.join(__dirname + '/login.html'));
 }); 
 
+app.get('/authenticate', function(req, res) {
+    ad.authenticate(username, password, function(err, auth) {
+  if (err) {
+   res.sendFile(path.join(__dirname + '/login.html'));
+    console.log('ERROR: '+JSON.stringify(err));
+    return;
+  }
+
+  if (auth) {
+          res.sendFile(path.join(__dirname + '/index.html'));
+    console.log('Authenticated!');
+  }
+  else {
+         res.sendFile(path.join(__dirname + '/login.html'));
+    console.log('Authentication failed!');
+  }
+});
+
+ 
+}); 
+
 
 
 app.get('/getValue', function(req, res) {
 
-        // if user is found and password is right so that we authenticating our service now.. 
-        // create a token
-        var token = jwt.sign(user, app.get('superSecret'), {
-           expiresIn : 60*60*24// Expiration Time.. 
-        });
 
-        console.log('**token Value**',token)
-      // verifies secret and checks exp
-    jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-      } else {
-        console.log(decoded.Name)
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
-        // next();
-      }
-    });
 
 
 GetReportedCRMCases(res)
 });
+
+    //     // if user is found and password is right so that we authenticating our service now.. 
+    //     // create a token
+    //     var token = jwt.sign(user, app.get('superSecret'), {
+    //        expiresIn : 60*60*24// Expiration Time.. 
+    //     });
+
+    //     console.log('**token Value**',token)
+    //   // verifies secret and checks exp
+    // jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
+    //   if (err) {
+    //     return res.json({ success: false, message: 'Failed to authenticate token.' });    
+    //   } else {
+    //     console.log(decoded.Name)
+    //     // if everything is good, save to request for use in other routes
+    //     req.decoded = decoded;    
+    //     // next();
+    //   }
+    // });
 
 
 function GetReportedCRMCases(res) {
@@ -153,6 +148,6 @@ app.get('*', function(req, res){
 });
 
 
-app.listen(3003, function () {
-  console.log('Example app listening on port 3003!');
+app.listen(3020, function () {
+  console.log('Example app listening on port 3020!');
 });
