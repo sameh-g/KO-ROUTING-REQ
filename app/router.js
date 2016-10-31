@@ -24,13 +24,13 @@ define(["knockout", "crossroads", "hasher",'jquery'], function(ko, crossroads, h
 
     function isUserAuthenticated() {
           //ajax call to authentication 
-   $.ajax({url: "/authenticate", success: function(result){
-       console.log('AD authenticate',result)
-       return result;
-    }});
+//    $.ajax({url: "/authenticate", success: function(result){
+//        console.log('AD authenticate',result)
+//        return result;
+//     }});
 
     //Ajax Call to authenticate 
-        //return false;
+        return true;
     }
     
     function Router(config) {
@@ -42,7 +42,7 @@ define(["knockout", "crossroads", "hasher",'jquery'], function(ko, crossroads, h
                 currentRoute(ko.utils.extend(requestParams, route.params));
                  //authenticate code should be here
                  console.log('isUserAuthenticated',isUserAuthenticated())
-                 if(isUserAuthenticated())
+                 if(!isUserAuthenticated())
                  {
                  window.location.href = "login";
                  }  
@@ -51,10 +51,7 @@ define(["knockout", "crossroads", "hasher",'jquery'], function(ko, crossroads, h
             
         });
 crossroads.routed.add(console.log, console); //log all routes
-crossroads.addRoute('/login', isUserAuthenticated());
-crossroads.addRoute('/contact/{id}', function(id){
-  console.log(id);
-});
+
 
 
         activateCrossroads();

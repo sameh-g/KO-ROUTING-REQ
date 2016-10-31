@@ -50,6 +50,13 @@ app.use("/nav-bar", express.static(__dirname + '/nav-bar'));
 app.use("/Navigation-page", express.static(__dirname + '/Navigation-page'));
 app.use("/Test-cr", express.static(__dirname + '/Test-cr'));
 
+// function middleWareAuthentication(req, res, next) {
+//      // here we need check for authentication for the middle ware authentication.. 
+//        res.redirect("/login");
+    
+// }
+// app.use(middleWareAuthentication);
+
 
 var userName = process.env['USERPROFILE'].split(path.sep)[2];
 var loginId = path.join("domainName",userName);
@@ -63,6 +70,8 @@ app.get('/index', function(req, res) {
 app.get('/login', function(req, res) {
     res.sendFile(path.join(__dirname + '/login.html'));
 }); 
+
+
 
 app.get('/authenticate', function(req, res) {
     ad.authenticate(username, password, function(err, auth) {
