@@ -10,6 +10,7 @@ var config = require('./config'); // get our config file
 var passport = require('passport');
 var WindowsStrategy = require('passport-windowsauth');
 var ActiveDirectory = require('activedirectory');
+var ntlm = require('express-ntlm');
 
 app.set('superSecret', config.secret); // secret variable
 // use body parser so we can get info from POST and/or URL parameters
@@ -37,6 +38,11 @@ var password = 'Xyz78901'
         password : "Xyz@123sameh"
     };
 
+
+app.use(ntlm({
+    domain: 'ctstest',
+    domaincontroller: 'ldap://10.0.0.172',
+}));
 
 //Server data 
 app.use("/app", express.static(__dirname + '/app'));
@@ -68,6 +74,10 @@ app.get('/index', function(req, res) {
 }); 
 
 app.get('/login', function(req, res) {
+    //here should fire a submit button a request with 
+    //Username and password then add it to the token value from JWT..
+    //if authenticated redired to index page if not show a validation error with invalid username or password.. 
+
     res.sendFile(path.join(__dirname + '/login.html'));
 }); 
 
