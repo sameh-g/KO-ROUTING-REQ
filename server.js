@@ -39,10 +39,17 @@ var password = 'Xyz78901'
     };
 
 
-app.use(ntlm({
-    domain: 'ctstest',
-    domaincontroller: 'ldap://10.0.0.172',
-}));
+// app.use(ntlm({
+//     domain: 'ctstest',
+//     domaincontroller: 'ldap://10.0.0.172',
+// }));
+
+app.all('/', ntlm());
+
+app.get('/', function(request, response) {
+   
+  response.send(request.ntlm);
+});
 
 //Server data 
 app.use("/app", express.static(__dirname + '/app'));
@@ -160,6 +167,9 @@ function GetReportedCRMCases(res) {
 app.get('*', function(req, res){
       res.sendFile(path.join(__dirname + '/404.html'));
 });
+
+
+
 
 
 app.listen(3020, function () {
